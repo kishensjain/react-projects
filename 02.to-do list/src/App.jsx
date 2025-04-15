@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {FaTrash} from 'react-icons/fa'
 
 function App() {
   const [input, setInput] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(()=>{
+    const storedTasks = localStorage.getItem("tasks");
+    return storedTasks ? JSON.parse(storedTasks) : [];
+   });
 
   const handleInput = () => {
     if (input.trim() !== "") {
@@ -18,6 +21,10 @@ function App() {
   const handleRemove = (idx) => {
     setTasks(tasks.filter((_, index) => index !== idx));
   };
+
+  useEffect(()=>{
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  },[tasks])
 
   return (
     <div className="container">
