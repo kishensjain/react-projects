@@ -1,42 +1,55 @@
-import { useState } from 'react'
+import { useState } from "react";
+import {FaTrash} from 'react-icons/fa'
 
 function App() {
-  const [input, setInput] = useState('')
-  const [tasks, setTasks] = useState([])
-  
-  const handleInput = () =>{
-    if (input.trim() !== '') {
-      console.log('Task added:', input)
-      setTasks([...tasks, input])
-      setInput('')
+  const [input, setInput] = useState("");
+  const [tasks, setTasks] = useState([]);
+
+  const handleInput = () => {
+    if (input.trim() !== "") {
+      console.log("Task added:", input);
+      setTasks([...tasks, input]);
+      setInput("");
     } else {
-      prompt('Please enter a task!')
+      alert("Please enter a task!");
     }
-  }
+  };
+
+  const handleRemove = (idx) => {
+    setTasks(tasks.filter((_, index) => index !== idx));
+  };
 
   return (
-    <>
+    <div className="container">
       <h1>To-Do List</h1>
-      <div className='container'>
-        <input 
-          type="text" 
-          placeholder='Add a task...'
+      <div className="inputContainer">
+        <input
+          type="text"
+          placeholder="Add a task..."
           className="input"
-          onChange={(e)=> setInput(e.target.value)} 
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           autoFocus
-          />
-          <button 
-            className='btn add'
-            onClick={handleInput}
-            >Add</button>
+        />
+        <button className="btn add" onClick={handleInput}>
+          Add
+        </button>
       </div>
       <ul>
-      {tasks.map((task, index) => (
-        <li key={index}>{task}</li>
-      ))}
-    </ul>
-    </>
-  )
+        {tasks.map((task, index) => (
+          <li key={index}>
+            {task}
+            <button 
+              className="btn remove" 
+              onClick={() => handleRemove(index)}>
+              <FaTrash />
+            </button>
+
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;

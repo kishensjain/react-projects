@@ -17,53 +17,68 @@
 
   h1{
     text-align: center;
-    justify-content: center;
-    margin-bottom: 8px;
+    color: #333;
     font-family: cursive;
   }
 
   .container{
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px 20px;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
     border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+
+  .inputContainer{
+    display: flex;
+    margin-bottom: 20px;
   }
 
   .input{
-    background-color: #a9f0f0;
-    border: none;
-    padding: 5px;
-
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 8px 0 0 8px;
+    border: '1px solid #ccc';
+    outline: none;
   }
 
   .btn{
     cursor: pointer;
     border: none;
-    border-radius: 4px;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 20px;
+    color: white;
   }
 
   .add{
-    background-color: green;
-    padding: 5px;
+    background-color: #4caf50;
   }
   .add:hover{
     background: greenyellow;
   }
 
+  .remove{
+    background-color: #e74c3c;
+    font-size: 12px;
+  }
+
+  .remove:hover{
+    background-color: orangered;
+  }
+
   ul {
     list-style: none;
-    margin-top: 20px;
     padding: 0;
   }
   
   li {
-    background-color: #f0f0f0;
+    display: flex;
+    background-color: #fff;
     color: #333;
-    margin-bottom: 8px;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding:10px;
+    border-radius: 8px;
+    justify-content: space-between;
+
   }
 
   li:hover {
