@@ -1,26 +1,33 @@
 import { useEffect, useState } from "react";
-import {FaTrash} from 'react-icons/fa'
+import TaskInput from "./components/TaskInput";
+import TaskList from "./components/TaskList";
+
 
 function App() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("")
   const [tasks, setTasks] = useState(()=>{
     const storedTasks = localStorage.getItem("tasks");
     return storedTasks ? JSON.parse(storedTasks) : [];
    });
 
-  const handleInput = () => {
-    if (input.trim() !== "") {
-      console.log("Task added:", input);
-      setTasks([...tasks, input]);
-      setInput("");
-    } else {
-      alert("Please enter a task!");
+  const addTask = () =>{
+    if(input.trim()){
+      setTasks([...tasks, input])
+      setInput("")
+    }else{
+      alert("Task cannot be empty!")
     }
-  };
+  }
 
-  const handleRemove = (idx) => {
-    setTasks(tasks.filter((_, index) => index !== idx));
-  };
+  const removeTask = (index) =>{
+    setTasks(tasks.filter((_,i)=>i !== index));
+  }
+
+  const updateTask = (index, newText) =>{
+    const updated = [...tasks];
+    updated[index] = newText
+    setTasks(updated);
+  }
 
   useEffect(()=>{
     localStorage.setItem("tasks", JSON.stringify(tasks))
@@ -29,32 +36,8 @@ function App() {
   return (
     <div className="container">
       <h1>To-Do List</h1>
-      <div className="inputContainer">
-        <input
-          type="text"
-          placeholder="Add a task..."
-          className="input"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          autoFocus
-        />
-        <button className="btn add" onClick={handleInput}>
-          Add
-        </button>
-      </div>
-      <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>
-            {task}
-            <button 
-              className="btn remove" 
-              onClick={() => handleRemove(index)}>
-              <FaTrash />
-            </button>
-
-          </li>
-        ))}
-      </ul>
+      <TaskInput input = {input} setInput = {setInput} onAdd = {addTask} />
+      <TaskList  tasks={tasks} onRemove={removeTask} onUpdate={updateTask} />
     </div>
   );
 }

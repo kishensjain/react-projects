@@ -66,6 +66,15 @@
     background-color: orangered;
   }
 
+  .edit{
+    background-color: yellow;
+    font-size: 12px;
+  }
+
+  .edit:hover{
+    background-color: rgb(173, 173, 37);
+  }
+
   ul {
     list-style: none;
     padding: 0;
