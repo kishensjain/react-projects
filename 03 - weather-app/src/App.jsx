@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import SearchInput from './components/SearchInput';
 import WeatherData from './components/WeatherData'
+import useWeatherInfo from './hooks/useWeatherInfo';
 function App() {
   const [input, setInput] = useState('')
   const [search, setSearch] = useState({})
+
+  const weatherInfo = useWeatherInfo(input)
+  const options = Object.keys(weatherInfo)
 
   const handleSearch = ()=>{
 
