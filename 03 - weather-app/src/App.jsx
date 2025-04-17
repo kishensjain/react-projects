@@ -6,8 +6,7 @@ function App() {
   const [input, setInput] = useState('')
   const [search, setSearch] = useState({})
 
-  const weatherInfo = useWeatherInfo(input)
-  const options = Object.keys(weatherInfo)
+  const weatherInfo = useWeatherInfo(search.query)
 
   const handleSearch = ()=>{
 
@@ -20,7 +19,7 @@ function App() {
       <div className='container'>
         <h1>Weather-app</h1>
         <SearchInput input = {input} setInput ={setInput}  onSearch={handleSearch}/>
-        <WeatherData search = {search}/>
+        <WeatherData data = {weatherInfo}/>
       </div>
     </>
   )

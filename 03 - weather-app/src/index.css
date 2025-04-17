@@ -57,3 +57,11 @@ h1{
 .search:hover{
   background-color: greenyellow;
 }
+
+.weatherData {
+  color: black;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
