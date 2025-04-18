@@ -58,10 +58,41 @@ h1{
   background-color: greenyellow;
 }
 
-.weatherData {
+.noData{
   color: black;
-  background-color: white;
+}
+
+.weatherData {
+  background-color: #333;
+  color: #f573bf85;
   padding: 10px;
   border-radius: 8px;
   text-align: center;
+  padding: 1.5rem;
+  margin-top: 1rem;
 }
+
+.label {
+  font-weight: bold;
+  color: #00796b;
+}
+
+.weatherData p {
+  margin: 0.5rem 0;
+}
+
+.weather-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.weatherData h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
