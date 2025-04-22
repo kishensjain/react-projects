@@ -1,40 +1,58 @@
-*{
-padding: 0;
-margin: 0;
-box-sizing: border-box;
+/* Global Reset */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-body{
-background: #000;
-color: beige;
-font-family: Arial, sans-serif;
-display: flex;
-height: 100vh;
-justify-content: center;
-align-items: center;
-flex-direction: column;
+/* Body Styling */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-h1{
-  text-align: center;
-  color:aqua;
-  font-family: cursive;
+/* Theme Wrappers */
+.light-mode {
+  background-color: #f4f4f4;
+  color: #111;
 }
 
-.container{
+.dark-mode {
+  background-color: #121212;
+  color: #f4f4f4;
+}
+
+/* App Container */
+.container {
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
   border-radius: 10px;
-  background-color: #f9f9f9;
+  background-color: inherit;
+  color: inherit;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.searchContainer{
+/* Header */
+h1 {
+  text-align: center;
+  color: aqua;
+  font-family: cursive;
+  margin-bottom: 1rem;
+}
+
+/* Search Input Section */
+.searchContainer {
   display: flex;
   margin-bottom: 20px;
 }
 
-.input{
+.input {
   flex-grow: 1;
   padding: 10px;
   border-radius: 8px 0 0 8px;
@@ -42,34 +60,47 @@ h1{
   outline: none;
 }
 
-.btn{
+.btn {
   cursor: pointer;
   border: none;
   border-radius: 0 8px 8px 0;
   padding: 10px 20px;
-  /* color: white; */
 }
 
-.search{
+.search {
   background-color: springgreen;
 }
 
-.search:hover{
+.search:hover {
   background-color: greenyellow;
 }
 
-.noData{
-  color: black;
+/* No Data Message */
+.noData {
+  color: inherit;
 }
 
+/* Weather Info Box */
 .weatherData {
-  background-color: #333;
-  color: #f573bf85;
-  padding: 10px;
+  background-color: inherit;
+  color: inherit;
+  padding: 1.5rem;
   border-radius: 8px;
   text-align: center;
-  padding: 1.5rem;
   margin-top: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Optional: Slightly different styles per theme */
+.dark-mode .weatherData {
+  background-color: #333;
+  color: #f573bf85;
+}
+
+.light-mode .weatherData {
+  background-color: #fff;
+  color: #222;
 }
 
 .label {
@@ -96,3 +127,17 @@ h1{
   margin-bottom: 1rem;
 }
 
+/* Theme Toggle Button Styling */
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #008cba;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+button:hover {
+  background-color: #005f8d;
+}

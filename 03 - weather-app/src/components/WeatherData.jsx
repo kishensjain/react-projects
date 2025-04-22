@@ -21,7 +21,6 @@ function WeatherData({data}) {
 
   return (
     <section className='weatherData'>
-      {/* <p><strong className='label'>📍City: </strong>{name}</p> */}
       <h2>🌦️ Weather in {name}</h2>
       {iconUrl && (
         <img
