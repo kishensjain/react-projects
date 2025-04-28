@@ -1,16 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import data from "./data";
+export default function Accordian() {
+  const [selected, setSelected] = useState(null);
+  const [enableMultiSelection, setEnableMultiSelection] = useState(false);
+  const [multiple, setMultiple] = useState([]);
 
-function App() {
-  const [count, setCount] = useState(0)
+  function handleSingleSelection(getCurrentId) {
+    setSelected(getCurrentId === selected ? null : getCurrentId);
+  }
 
+  function handleMultiSelection(getCurrentId) {
+    let cpyMutiple = [...multiple];
+    const findIndexOfCurrentId = cpyMutiple.indexOf(getCurrentId);
+
+    console.log(findIndexOfCurrentId);
+    if (findIndexOfCurrentId === -1) cpyMutiple.push(getCurrentId);
+    else cpyMutiple.splice(findIndexOfCurrentId, 1);
+
+    setMultiple(cpyMutiple);
+  }
+
+  console.log(selected, multiple);
   return (
-    <>
-      
-    </>
-  )
-}
+    <div className="acc-wrapper">
+      <button onClick={() => setEnableMultiSelection(!enableMultiSelection)}>
+        {enableMultiSelection
+          ? "Disable Multi Selection"
+          : "Enable Multi Selection"}
+      </button>
 
-export default App
+      <div className="accordian">
+        {data && data.length > 0 ? (
+          data.map((dataItem) => (
+            <div className="item">
+              <div
+                onClick={
+                  enableMultiSelection
+                    ? () => handleMultiSelection(dataItem.id)
+                    : () => handleSingleSelection(dataItem.id)
+                }
+                className="title"
+              >
+                <h3>{dataItem.question}</h3>
+                <span className="">
+                  {enableMultiSelection
+                    ? multiple.indexOf(dataItem.id) !== -1
+                      ? "-"
+                      : "+"
+                    : selected === dataItem.id
+                    ? "-"
+                    : "+"}
+                </span> 
+              </div>
+              {enableMultiSelection
+                ? multiple.indexOf(dataItem.id) !== -1 && (
+                    <div className="acc-content ">{dataItem.answer}</div>
+                  )
+                : selected === dataItem.id && (
+                    <div className="acc-content ">{dataItem.answer}</div>
+                  )}
+            </div>
+          ))
+        ) : (
+          <div>No data found !</div>
+        )}
+      </div>
+    </div>
+  );
+}
