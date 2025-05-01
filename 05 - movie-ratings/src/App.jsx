@@ -1,5 +1,6 @@
 import { useState } from "react";
 import movies from "./data";
+import MovieItem from "./components/MovieItem";
 
 function App() {
   const [enableMultiSelection, setEnableMultiSelection] = useState(false);
@@ -33,45 +34,18 @@ function App() {
         </button>
 
         <div className="accordian">
-          {movies && movies.length > 0 ? (
-            movies.map((movie) => (
-              <div className="item" key={movie.id}>
-                <div
-                  onClick={
-                    enableMultiSelection
-                      ? () => handleMultiSelection(movie.id)
-                      : () => handleSingleSelection(movie.id)
-                  }
-                  className="title"
-                >
-                  <h3>{movie.name}</h3>
-                  <span>
-                    {enableMultiSelection
-                      ? multiple.has(movie.id)
-                        ? "-"
-                        : "+"
-                      : selected === movie.id
-                      ? "-"
-                      : "+"}
-                  </span>
-                </div>
-                {enableMultiSelection
-                  ? multiple.has(movie.id) && (
-                      <div className="movie-description">
-                        {movie.description}
-                      </div>
-                    )
-                  : selected ===
-                    movie.id &&(
-                      <div className="movie-description">
-                        {movie.description}
-                      </div>
-                    )}
-              </div>
-            ))
-          ) : (
-            <h1>No Data Found</h1>
-          )}
+            {movies.map((movie) => (
+              <MovieItem
+                key = {movie.id}
+                movie = {movie}
+                isSelected = {enableMultiSelection ? multiple.has(movie.id) : selected === movie.id}
+                onClick={() =>
+                  enableMultiSelection
+                    ? handleMultiSelection(movie.id)
+                    : handleSingleSelection(movie.id)
+                }
+                />
+              ))}
         </div>
       </div>
     </>
