@@ -4,20 +4,20 @@ import movies from "./data";
 function App() {
   const [enableMultiSelection, setEnableMultiSelection] = useState(false);
   const [selected, setSelected] = useState(null);
-  const [multiple, setMultiple] = useState([]);
+  const [multiple, setMultiple] = useState(new Set());
 
   function handleSingleSelection(movieId) {
     setSelected(selected === movieId ? null : movieId);
   }
 
   function handleMultiSelection(movieId) {
-    let copyMultiple = [...multiple];
-    let findIdxOfCurrId = copyMultiple.indexOf(movieId);
-
-    findIdxOfCurrId === -1
-      ? copyMultiple.push(movieId)
-      : copyMultiple.splice(findIdxOfCurrId, 1);
-    setMultiple(copyMultiple);
+    let newSet = new Set(multiple); // using set to improve lookup
+    if(newSet.has(movieId)){
+      newSet.delete(movieId);
+    }else{
+      newSet.add(movieId);
+    }
+    setMultiple(newSet);
   }
 
   return (
@@ -47,7 +47,7 @@ function App() {
                   <h3>{movie.name}</h3>
                   <span>
                     {enableMultiSelection
-                      ? multiple.indexOf(movie.id) !== -1
+                      ? multiple.has(movie.id)
                         ? "-"
                         : "+"
                       : selected === movie.id
@@ -55,6 +55,18 @@ function App() {
                       : "+"}
                   </span>
                 </div>
+                {enableMultiSelection
+                  ? multiple.has(movie.id) && (
+                      <div className="movie-description">
+                        {movie.description}
+                      </div>
+                    )
+                  : selected ===
+                    movie.id &&(
+                      <div className="movie-description">
+                        {movie.description}
+                      </div>
+                    )}
               </div>
             ))
           ) : (
