@@ -25,10 +25,16 @@ function Stars({ noOfStars, onRate }) {
         return (
           <FaStar
             key={index}
-            className={index <= (hover || rating) ? "active stars" : "inactive stars" }
+            tabIndex={0}
+            role="radio"
+            aria-label = {`Rate ${index} star${index > 1 ? "s" : ""}`}
+            className={`star ${index <= (hover || rating) ? "active" : "inactive"}`}
             onClick={() => handleClick(index)}
             onMouseMove={() => handleMouseHover(index)}
             onMouseLeave={() => handleMouseLeave()}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") handleClick(index);
+            }}
             size={30}
           />
         );

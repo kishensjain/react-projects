@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Stars from "./Stars";
+import { FaTrashAlt } from "react-icons/fa";
 
 function StarRating({ noOfStars = 10 }) {
   const [willRate, setWillRate] = useState(false);
@@ -19,6 +20,14 @@ function StarRating({ noOfStars = 10 }) {
           {userRating && (
             <p>You rated this movie {userRating} out of {noOfStars} stars.</p>
           )}
+          <button 
+            className="btn remove-rating"
+            onClick={() =>{ 
+              setWillRate(false)
+              setUserRating(null)
+          }}
+            aria-label="Cancel rating"
+          ><FaTrashAlt/></button>
         </>
       )}
     </div>
