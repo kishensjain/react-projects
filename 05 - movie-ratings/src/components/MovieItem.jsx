@@ -1,3 +1,5 @@
+import StarRating from "./StarRating";
+
 function MovieItem({ movie, isSelected, onClick }) {
   return (
     <div className="item">
@@ -14,7 +16,10 @@ function MovieItem({ movie, isSelected, onClick }) {
         <span>{isSelected ? "-" : "+"}</span>
       </div>
       {isSelected && (
-        <div className="movie-description">{movie.description}  </div>
+        <>
+        <div className="movie-description">{movie.description}</div>
+        <StarRating/>
+        </>
       )}
     </div>
   );
