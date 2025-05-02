@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-function Stars({ noOfStars, onRate }) {
+function Stars({ noOfStars, onRate, currentRating }) {
   const [hover, setHover] = useState(0)
-  const [rating, setRating] = useState(0)
 
   function handleClick(getCurrentIndex){
-    setRating(getCurrentIndex);
     if(onRate) onRate(getCurrentIndex)
   }
 
@@ -15,7 +13,7 @@ function Stars({ noOfStars, onRate }) {
   }
 
   function handleMouseLeave(){
-    setHover(rating);
+    setHover(currentRating);
   }
 
   return (
@@ -28,7 +26,7 @@ function Stars({ noOfStars, onRate }) {
             tabIndex={0}
             role="radio"
             aria-label = {`Rate ${index} star${index > 1 ? "s" : ""}`}
-            className={`star ${index <= (hover || rating) ? "active" : "inactive"}`}
+            className={`star ${index <= (hover || currentRating) ? "active" : "inactive"}`}
             onClick={() => handleClick(index)}
             onMouseMove={() => handleMouseHover(index)}
             onMouseLeave={() => handleMouseLeave()}

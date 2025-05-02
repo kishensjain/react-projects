@@ -1,6 +1,9 @@
+import { useState } from "react";
 import StarRating from "./StarRating";
 
 function MovieItem({ movie, isSelected, onClick }) {
+  const [rating, setRating] = useState({});
+
   return (
     <div className="item">
       <div className="title"
@@ -18,7 +21,14 @@ function MovieItem({ movie, isSelected, onClick }) {
       {isSelected && (
         <>
         <div className="movie-description">{movie.description}</div>
-        <StarRating/>
+        <StarRating
+          noOfStars={10}
+          userRating = {rating[movie.id]}
+          setUserRating={(newRating) => {
+            // Update the rating for the current movie
+            setRating(prev => ({ ...prev, [movie.id]: newRating }));
+          }}
+        />
         </>
       )}
     </div>

@@ -3,31 +3,35 @@ import { useState } from "react";
 import Stars from "./Stars";
 import { FaTrashAlt } from "react-icons/fa";
 
-function StarRating({ noOfStars = 10 }) {
-  const [willRate, setWillRate] = useState(false);
-  const [userRating, setUserRating] = useState(null);
+function StarRating({ noOfStars = 10, userRating, setUserRating }) {
+  const willRate = userRating !==  null;
 
   return (
     <div className="star-rating">
       {!willRate && (
-        <button className="btn" onClick={() => setWillRate(true)}>
+        <button
+          className="btn"
+          onClick={() => setUserRating(0)}
+          aria-label="Rate the movie"
+        >
           Rate the movie
         </button>
       )}
       {willRate && (
         <>
-          <Stars noOfStars={noOfStars} onRate={setUserRating} />
-          {userRating && (
-            <p>You rated this movie {userRating} out of {noOfStars} stars.</p>
+          <Stars noOfStars={noOfStars} onRate={setUserRating}  currentRating = {userRating}/>
+          {userRating >0 && (
+            <p>
+              You rated this movie {userRating} out of {noOfStars} stars.
+            </p>
           )}
-          <button 
+          <button
             className="btn remove-rating"
-            onClick={() =>{ 
-              setWillRate(false)
-              setUserRating(null)
-          }}
+            onClick={() => setUserRating(null)}
             aria-label="Cancel rating"
-          ><FaTrashAlt/></button>
+          >
+            <FaTrashAlt /> Cancel
+          </button>
         </>
       )}
     </div>
