@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-function Stars({ noOfStars }) {
+function Stars({ noOfStars, onRate }) {
   const [hover, setHover] = useState(0)
   const [rating, setRating] = useState(0)
 
   function handleClick(getCurrentIndex){
     setRating(getCurrentIndex);
+    if(onRate) onRate(getCurrentIndex)
   }
 
   function handleMouseHover(getCurrentIndex){

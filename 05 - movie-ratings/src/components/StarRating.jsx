@@ -4,6 +4,7 @@ import Stars from "./Stars";
 
 function StarRating({ noOfStars = 10 }) {
   const [willRate, setWillRate] = useState(false);
+  const [userRating, setUserRating] = useState(null);
 
   return (
     <div className="star-rating">
@@ -12,7 +13,14 @@ function StarRating({ noOfStars = 10 }) {
           Rate the movie
         </button>
       )}
-      {willRate && <Stars noOfStars={10}/>}
+      {willRate && (
+        <>
+          <Stars noOfStars={noOfStars} onRate={setUserRating} />
+          {userRating && (
+            <p>You rated this movie {userRating} out of {noOfStars} stars.</p>
+          )}
+        </>
+      )}
     </div>
   );
 }
