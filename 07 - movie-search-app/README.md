@@ -1,5 +1,7 @@
 # 🎬 Movie Search App
 
+[Video Preview](https://www.linkedin.com/posts/kishen-s_react-webdevelopment-tailwindcss-activity-7310914888552337408-tVnF?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFQ_6lMBkJJLh1LDJXoL4_oVmfs2Bk0Tb7Y)
+
 A sleek and responsive web application that allows users to search for movies using **The Movie Database (TMDB) API**. Users can view movie details, browse search results with pagination, and access trending movies.
 
 ## 🚀 Features
